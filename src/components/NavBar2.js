@@ -5,14 +5,12 @@ import { Menu } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { Tooltip } from "@mui/material";
-import './NavBar2.css'
 import { Menu as MenuIcon } from "@mui/icons-material";
 import React from "react";
 import logo from '../assets/logo1.png';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const NavBar2 = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,7 +35,7 @@ export const NavBar2 = () => {
     <AppBar position="static">
     <Container maxWidth="xl">
       <Toolbar disableGutters>
-        <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex', md: 'none', lg: 'none' } }}>
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'flex', md: 'none', lg: 'none' }}}>
           <IconButton
             size="medium"
             aria-label="account of current user"
@@ -45,7 +43,7 @@ export const NavBar2 = () => {
             aria-haspopup="true"
             onClick={handleOpenNavMenu}
             color="inherit"
-            marginRight="0px"
+            marginright="0px"
           >
             <MenuIcon />
           </IconButton>
@@ -75,8 +73,8 @@ export const NavBar2 = () => {
           </Menu>
         </Box>
   
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="logo" style={{ width: '60px', height: '60px', marginRight: '8px' }} />
+        <Box sx={{ display: 'flex', alignItems: 'center', alignSelf: 'center' }}>
+          <img src={logo} alt="logo" style={{ width: '60px', height: '60px', marginright: '8px' }} />
           <Typography
             variant="h6"
             noWrap
@@ -104,13 +102,12 @@ export const NavBar2 = () => {
             component="p"
             href=""
             sx={{
-              mr: 2,
+              mr: 6,
               display: { xs: 'flex', md: 'none' },
               fontWeight: 700,
               letterSpacing: '.2rem',
               color: 'secondary.main',
               textDecoration: 'none',
-              alignSelf: 'center',
               '&:hover': {
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -118,7 +115,7 @@ export const NavBar2 = () => {
                 color: 'secondary.main',
                 letterSpacing: '.2rem',
                 textDecoration: 'none',
-              },
+              }
             }}
           >
             ApexTravels
