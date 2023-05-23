@@ -6,10 +6,10 @@ import { NavBar2 } from './components/NavBar2';
 const theme = createTheme({
   palette: {
     primary: {
-      main: colors.grey[900],
+      main: '#1a1a1a',
     },
     secondary: {
-      main: colors.red['A200'],
+      main: "#ff002f",
     },
   },
 });
