@@ -1,6 +1,5 @@
 API Used: 
-    amadeus for flight search design
-    Flightlabs for flight search engine
+    amadeus for flight search design (REST API)
 
 UI:
     Material UI

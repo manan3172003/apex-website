@@ -12,7 +12,7 @@ export const getAmadeusData = params => {
   const source = CancelToken.source();
   // GET request with all params we need
   const out = axios.get(
-    `/api/airports/?keyword=${searchQuery}&page=${page}&subType=${subTypeCheck}`,
+    `http://localhost:1338/api/airports/?keyword=${searchQuery}&page=${page}&subType=${subTypeCheck}`,
     {
       cancelToken: source.token
     }

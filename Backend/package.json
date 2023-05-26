@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "build": "cd ../client && npm run build && cd ../server"
   },
   "keywords": [],
@@ -14,7 +16,10 @@
   "dependencies": {
     "amadeus": "^8.0.0",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "node-fetch": "^2.6.11"
   }
 }
