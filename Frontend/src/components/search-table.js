@@ -21,7 +21,8 @@ const useStyles = makeStyles({
 });
 
 const SearchTable = props => {
-  const { data, meta } = props.dataSource;
+  const data = props.dataSource;
+  const meta = {count: data.length};
   const classes = useStyles();
 
   return (
@@ -50,10 +51,10 @@ const SearchTable = props => {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.subType}</TableCell>
-                <TableCell align="right">{row.address.cityName}</TableCell>
-                <TableCell align="right">{row.address.countryName}</TableCell>
-                <TableCell align="right">{row.address.countryCode}</TableCell>
+                <TableCell align="right">AIRPORT</TableCell>
+                <TableCell align="right">{row.CityName}</TableCell>
+                <TableCell align="right">{row.CountryName}</TableCell>
+                <TableCell align="right">{row.CountryId}</TableCell>
               </TableRow>
             ))}
         </TableBody>

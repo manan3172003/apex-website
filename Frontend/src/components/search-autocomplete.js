@@ -14,7 +14,7 @@ const SearchAutocomplete = (props) => {
   const [loading, setLoading] = React.useState(false)
 
   // Configure options format for proper displaying on the UI
-  const names = options.map(i => ({ type: i.subType, name: i.name }));
+  const names = options.map(i => ({ type: "AIRPORT", name: i.PlaceName }));
 
   // Debounce func prevents extra unwanted keystrokes, when user triggers input events 
   const debounceLoadData = useCallback(debounce(setKeyword, 1000), []);
@@ -30,9 +30,7 @@ const SearchAutocomplete = (props) => {
     const { out, source } = getAmadeusData({ ...props.search, page: 0, keyword });
 
     out.then(res => {
-      if (!res.data.code) {
-        setOptions(res.data.data);
-      }
+      setOptions(res.data);
       setLoading(false)
     }).catch(err => {
       axios.isCancel(err);

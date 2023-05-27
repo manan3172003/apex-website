@@ -21,10 +21,7 @@ const SearchRoot = () => {
     page: 0
   });
 
-  const [dataSource, setDataSource] = React.useState({
-    meta: { count: 0 },
-    data: []
-  });
+  const [dataSource, setDataSource] = React.useState([]);
 
   const [loading, setLoading] = React.useState(false)
 
@@ -53,9 +50,7 @@ const SearchRoot = () => {
     out.then(res => {
       // If we send too many request to the api per second - we will get an error and app will break
       // Therefore we implemented simple check to prevent error on client side.
-      if (!res.data.code) {
-        setDataSource(res.data); // dispatching data to components state
-      }
+      setDataSource(res); // dispatching data to components state
       setLoading(false)
     }).catch(err => {
       axios.isCancel(err);

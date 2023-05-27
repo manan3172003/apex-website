@@ -92,6 +92,7 @@ router.get('/api/test', async (req, res) => {
       .then(async result => {
         // Sending response for client
         try {
+          console.log(result);
           await res.json(JSON.parse(result));
         } catch (err) {
           await console.log(err);
