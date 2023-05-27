@@ -43,7 +43,7 @@ try{
       // API call with params we requested from client app
 
       var myHeaders1 = new Headers();
-      myHeaders.append("Authorization", `Bearer ${token}`);
+      myHeaders1.append("Authorization", `Bearer ${token}`);
 
       var requestOptions1 = {
         method: 'GET',
@@ -53,19 +53,18 @@ try{
         try{
           const response = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=${subType}&keyword=${keyword}`, requestOptions1)
           .then(response => response.text())
-          .then(result => {
-            console.log(result)
+          .then(async result => {
+            console.log(result);
+            // Sending response for client
+            try {
+              await res.json(JSON.parse(result));
+            } catch (err) {
+              await console.log(err);
+            }
           })
           .catch(error => console.log('error', error));
-
-          // // Sending response for client
-          //   try {
-          //     await res.json(JSON.parse(response.body));
-          //   } catch (err) {
-          //     await console.log(err);
-          //   }
-          //   // console.log(req.query)
-          //   // console.log(response.body)
+            // console.log(req.query)
+            // console.log(response.body)
           } catch(err){
             await console.log(err)
           }
@@ -78,5 +77,31 @@ try{
   }
   
 });
+
+router.get('/api/test', async (req, res) => {
+  try{
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    const { keyword } = req.query;
+
+    fetch(`https://www.skyscanner.ca/g/autosuggest-search/api/v1/search-flight/CA/en-US/${keyword}?isDestination=false&enable_general_search_v2=true&autosuggestExp=`, requestOptions)
+      .then(response => response.text())
+      .then(async result => {
+        // Sending response for client
+        try {
+          await res.json(JSON.parse(result));
+        } catch (err) {
+          await console.log(err);
+        }
+      })
+      .catch(error => console.log('error', error));
+  }
+  catch(err){
+    console.log(err)
+  }
+})
 
 export default router;

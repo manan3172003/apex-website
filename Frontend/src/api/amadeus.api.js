@@ -16,6 +16,13 @@ export const getAmadeusData = params => {
     {
       cancelToken: source.token
     }
-  )
+
+  // const out = axios.get(
+  //   `http://localhost:1338/api/test/?keyword=${searchQuery}&page=${page}&subType=${subTypeCheck}`,
+  //   {
+  //     cancelToken: source.token
+  //   }
+  );
+
   return { out, source }
 };
