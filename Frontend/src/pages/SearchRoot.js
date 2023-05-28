@@ -15,7 +15,7 @@ const SearchRoot = () => {
     3. we can create as many states as we need
   */
   const [search, setSearch] = React.useState({
-    keyword: "a",
+    keyword: "",
     city: true,
     airport: true,
     page: 0

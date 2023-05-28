@@ -1,6 +1,6 @@
 import './App.css';
 import { createTheme, colors, ThemeProvider, Typography } from '@mui/material';
-import { NavBar2 } from './components/NavBar2';
+import {NavBar2} from './components/NavBar2';
 import SearchRoot from './pages/SearchRoot';
 
 const theme = createTheme({
@@ -15,11 +15,15 @@ const theme = createTheme({
 });
 
 function App() {
-  return(
+  return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <NavBar2/>
-        <SearchRoot/>
+        <header>
+          <NavBar2 />
+        </header>
+        <main>
+          <SearchRoot />
+        </main>
       </div>
     </ThemeProvider>
   );
