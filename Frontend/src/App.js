@@ -1,4 +1,5 @@
 import './App.css';
+import './Styles.css';
 import { createTheme, colors, ThemeProvider, Typography } from '@mui/material';
 import {NavBar2} from './components/NavBar2';
 import SearchRoot from './pages/SearchRoot';
@@ -18,14 +19,14 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <div class="flex-col h-screen justify-center">
+        <div class="flex flex-col h-screen content-center">
         <header class="content-start">
           <NavBar2 />
         </header>
         <main>
           <SearchRoot />
         </main>
-        <footer id="footer"class="content-end" sx= {{position: 'absolute', bottom:0}}>
+        <footer id="footer">
           <Typography variant="body2" color="text.secondary" align="center">
             {'© '}
             ApexTravels
@@ -33,7 +34,6 @@ function App() {
             {new Date().getFullYear()}
             {'.'}
           </Typography>
-
         </footer>
         </div>
       </div>

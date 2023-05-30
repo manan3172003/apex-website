@@ -53,8 +53,7 @@ const SearchAutocomplete = (props) => {
     // This is Material-UI component that also has it's own props
     <>
       <Autocomplete
-        id="asynchronous-demo"
-        style={{ width: 300, marginBottom: "1rem" }}
+        style={{ width: "12.5rem", marginBottom: "1rem" }}
         open={open}
         onOpen={() => {
           setOpen(true);

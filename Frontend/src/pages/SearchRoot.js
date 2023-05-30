@@ -3,6 +3,7 @@ import SearchAutocomplete from "../components/search-autocomplete";
 import MyDatePicker from "../components/DatePicker"
 import TripSelector from "../components/TripSelector";
 import { getAmadeusData } from "../api/amadeus.api";
+import '../Styles.css'
 import axios from "axios"
 
 // Main component 
@@ -64,13 +65,25 @@ const SearchRoot = () => {
   }, [search]);
 
   return (
-    <div className="container">
-      <div className="search-panel">
-        <SearchAutocomplete search={search} setSearch={setSearch} label="From"/>
-        <SearchAutocomplete search={search} setSearch={setSearch} label="To"/>
-        <MyDatePicker label="Departure"/>
-        <MyDatePicker label="Return"/>
-        <TripSelector />
+    <div className="container" class="mt-4">
+      <div className="search-panel" class="flex-col">
+        <div class="flex justify-center">
+          <TripSelector />
+        </div>
+        <div class="flex flex-wrap justify-center space-x-8">
+          <div class="ml-8">
+            <SearchAutocomplete search={search} setSearch={setSearch} label="From"/>
+          </div>
+          <div>
+            <SearchAutocomplete search={search} setSearch={setSearch} label="To"/>            
+          </div>
+          <div>
+            <MyDatePicker label="Departure"/>  
+          </div>
+          <div>
+            <MyDatePicker label="Return"/>          
+          </div>
+        </div>    
       </div>
     </div>
   );

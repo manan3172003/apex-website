@@ -8,7 +8,7 @@ import FormLabel from '@mui/material/FormLabel';
 export default function TripSelector() {
   return (
     <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">Trip</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
