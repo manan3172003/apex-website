@@ -1,6 +1,7 @@
 import React from "react";
 import SearchAutocomplete from "../components/search-autocomplete";
 import MyDatePicker from "../components/DatePicker"
+import TripSelector from "../components/TripSelector";
 import { getAmadeusData } from "../api/amadeus.api";
 import axios from "axios"
 
@@ -69,6 +70,7 @@ const SearchRoot = () => {
         <SearchAutocomplete search={search} setSearch={setSearch} label="To"/>
         <MyDatePicker label="Departure"/>
         <MyDatePicker label="Return"/>
+        <TripSelector />
       </div>
     </div>
   );
