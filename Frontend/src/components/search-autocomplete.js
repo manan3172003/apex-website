@@ -47,7 +47,7 @@ const SearchAutocomplete = (props) => {
   // Desctructuring our props
   const { city, airport } = props.search
 
-  const label = city && airport ? "City and Airports" : city ? "City" : airport ? "Airports" : ""
+  const label = props.label
 
   return (
     // This is Material-UI component that also has it's own props

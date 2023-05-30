@@ -1,9 +1,8 @@
 import React from "react";
-import SearchTable from "../components/search-table";
 import SearchAutocomplete from "../components/search-autocomplete";
+import MyDatePicker from "../components/DatePicker"
 import { getAmadeusData } from "../api/amadeus.api";
 import axios from "axios"
-import SearchCheckboxes from "../components/search-checkboxes";
 
 // Main component 
 const SearchRoot = () => {
@@ -66,10 +65,11 @@ const SearchRoot = () => {
   return (
     <div className="container">
       <div className="search-panel">
-        <SearchAutocomplete search={search} setSearch={setSearch} />
-        <SearchCheckboxes search={search} setSearch={setSearch} />
+        <SearchAutocomplete search={search} setSearch={setSearch} label="From"/>
+        <SearchAutocomplete search={search} setSearch={setSearch} label="To"/>
+        <MyDatePicker label="Departure"/>
+        <MyDatePicker label="Return"/>
       </div>
-      <SearchTable dataSource={dataSource} search={search} setSearch={setSearch} loading={loading} />
     </div>
   );
 };

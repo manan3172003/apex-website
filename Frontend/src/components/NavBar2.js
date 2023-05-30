@@ -37,7 +37,7 @@ export const NavBar2 = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
-            <img src={logo} alt="logo" width="40px" height="40px" />
+            <img src={logo} alt="logo" width="46px" height="40px" />
           </IconButton>
           <Typography
             variant="h6"
@@ -48,14 +48,14 @@ export const NavBar2 = () => {
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontWeight: 700,
-              letterSpacing: '.2rem',
+              letterSpacing: '.1rem',
               textDecoration: 'none',
               color: 'secondary.main',
               '&hover': {
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
-                letterSpacing: '.2rem',
+                letterSpacing: '.1rem',
                 textDecoration: 'none',
                 color: 'secondary.main',
               }
@@ -113,7 +113,7 @@ export const NavBar2 = () => {
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontWeight: 700,
-              letterSpacing: '.2rem',
+              letterSpacing: '.1rem',
               color: 'secondary.main',
               textDecoration: 'none',
               '&hover': {
@@ -121,7 +121,7 @@ export const NavBar2 = () => {
                 display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
                 fontWeight: 700,
-                letterSpacing: '.2rem',
+                letterSpacing: '.1rem',
                 color: 'secondary.main',
                 textDecoration: 'none',
               }
