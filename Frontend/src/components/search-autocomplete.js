@@ -53,7 +53,7 @@ const SearchAutocomplete = (props) => {
     // This is Material-UI component that also has it's own props
     <>
       <Autocomplete
-        style={{ width: "12.5rem", marginBottom: "1rem" }}
+        style={{ width: "11rem"}}
         open={open}
         onOpen={() => {
           setOpen(true);

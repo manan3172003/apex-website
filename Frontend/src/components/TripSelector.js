@@ -7,12 +7,13 @@ import FormLabel from '@mui/material/FormLabel';
 
 export default function TripSelector() {
   return (
-    <FormControl>
+    <FormControl style={{marginBottom: "1rem"}}>
       <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
+        defaultValue="Round-Trip"
       >
         <FormControlLabel value="Round-Trip" control={<Radio />} label="Round-Trip" />
         <FormControlLabel value="One-way" control={<Radio />} label="One-way" />

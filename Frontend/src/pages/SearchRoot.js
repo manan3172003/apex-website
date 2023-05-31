@@ -5,6 +5,9 @@ import TripSelector from "../components/TripSelector";
 import { getAmadeusData } from "../api/amadeus.api";
 import '../Styles.css'
 import axios from "axios"
+import { TextField } from "@mui/material";
+import NumTraveller from "../components/NumTraveller";
+import Button from '@mui/material/Button';
 
 // Main component 
 const SearchRoot = () => {
@@ -70,20 +73,17 @@ const SearchRoot = () => {
         <div class="flex justify-center">
           <TripSelector />
         </div>
-        <div class="flex flex-wrap justify-center space-x-8">
-          <div class="ml-8">
-            <SearchAutocomplete search={search} setSearch={setSearch} label="From"/>
+        <div class="flex flex-row justify-center">
+          <div id="search" class="grid gap-2 lg:grid-cols-6 justify-items-center">
+              <div><SearchAutocomplete class= "" search={search} setSearch={setSearch} label="From"/></div>
+              <div><SearchAutocomplete class="" search={search} setSearch={setSearch} label="To"/></div>
+              <div><MyDatePicker label="Departure"/></div>
+              <div><MyDatePicker label="Return"/></div>
+              <div><NumTraveller /></div>
+              <Button color="primary" variant="contained" style={{width: "9rem", fontWeight: "bold", fontSize: "15px"}}>Search</Button>
           </div>
-          <div>
-            <SearchAutocomplete search={search} setSearch={setSearch} label="To"/>            
-          </div>
-          <div>
-            <MyDatePicker label="Departure"/>  
-          </div>
-          <div>
-            <MyDatePicker label="Return"/>          
-          </div>
-        </div>    
+        </div>
+          
       </div>
     </div>
   );

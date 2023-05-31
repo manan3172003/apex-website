@@ -13,6 +13,11 @@ const theme = createTheme({
       main: "#ff002f",
     },
   },
+  typography: {
+    button: {
+      textTransform: 'none'
+    }
+  }
 });
 
 function App() {
