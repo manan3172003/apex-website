@@ -18,20 +18,12 @@ export const NumTraveller = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  var size = null
-  if (props.class === "small") {
-    size = "100%"
-  }
-  else if (props.class === "large") {
-    size = "10rem"
-  }
-
   return (
     <div>
       <TextField
          label={"Travellers and Cabin"}
          InputProps={{readOnly: true}}
-         style={{width: size}}
+         style={{width: "100%"}}
          sx={{ input: { cursor: 'pointer' } }}
          onClick={handleClick}
          InputLabelProps={{

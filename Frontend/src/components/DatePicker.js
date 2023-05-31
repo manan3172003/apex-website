@@ -14,7 +14,7 @@ export const MyDatePicker = (props) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker sx={{ width: size}} label = {props.label} slotProps={{ textField: { size: props.class } }}/>
+      <DatePicker sx={{ width: "100%"}} label = {props.label} slotProps={{ textField: { size: props.class } }}/>
     </LocalizationProvider>
   );
 }

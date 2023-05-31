@@ -7,7 +7,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 export default function TripSelector() {
   return (
-    <FormControl>
+    <FormControl style={{marginBottom: "1rem"}}>
       <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
       <RadioGroup
         row

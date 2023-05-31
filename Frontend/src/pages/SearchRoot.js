@@ -5,12 +5,10 @@ import TripSelector from "../components/TripSelector";
 import { getAmadeusData } from "../api/amadeus.api";
 import '../Styles.css'
 import axios from "axios"
-import { Grid, TextField, Item, Container } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import {NumTraveller} from "../components/NumTraveller";
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { useMediaQuery } from '@mui/material';
 
 // Main component 
 const SearchRoot = () => {
@@ -70,39 +68,35 @@ const SearchRoot = () => {
     };
   }, [search]);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  const isSmallScreen = useMediaQuery('(max-width:1200px)');
+  const elementClassName = isSmallScreen ? 'small' : 'large';
+  const buttonSize = isSmallScreen ? '2.5rem' : '3.5rem';
+
 
   return (
     <div className="container" class="mt-4">
       <div className="search-panel" class="flex-col">
         <Container maxWidth="xl">
+          
+      <div class="flex justify-center"><TripSelector /></div>
         <Grid container spacing={2} >
-          <Grid item xs={12}>
-            <div class="flex justify-center"><TripSelector /></div>
+            <Grid item xs={6} lg={2}>
+            <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="From"/></div>
             </Grid>
             <Grid item xs={6} lg={2}>
-            <div><SearchAutocomplete class= "small" search={search} setSearch={setSearch} label="From"/></div>
+            <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="To"/></div>
             </Grid>
             <Grid item xs={6} lg={2}>
-            <div><SearchAutocomplete class= "small" search={search} setSearch={setSearch} label="To"/></div>
+            <div><MyDatePicker class={elementClassName} label="Departure"/></div>
             </Grid>
             <Grid item xs={6} lg={2}>
-            <div><MyDatePicker class="small" label="Departure"/></div>
-            </Grid>
-            <Grid item xs={6} lg={2}>
-            <div><MyDatePicker class="small" label="Return"/></div>
+            <div><MyDatePicker class={elementClassName} label="Return"/></div>
             </Grid>
             <Grid item xs={12} lg={2}>
-            <div><NumTraveller class="small"/></div>
+            <div><NumTraveller class={elementClassName}/></div>
             </Grid>
             <Grid item xs={12} lg={2}>
-            <Button color="primary" variant="contained" style={{width: "100%", fontWeight: "bold", fontSize: "15px"}}>Search</Button>
+            <div><Button color="primary" variant="contained" style={{width: "100%", fontWeight: "bold", height: buttonSize}}>Search</Button></div>
             </Grid>
          </Grid>
         </Container>

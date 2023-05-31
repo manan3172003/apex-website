@@ -49,13 +49,13 @@ const SearchAutocomplete = (props) => {
 
   const label = props.label
 
-  var size = null
-  if (!(props.class.localeCompare("small"))) {
-    size = "100%"
-  }
-  else if (!(props.class.localeCompare("large"))) {
-    size = "10rem"
-  }
+  // var size = null
+  // if (!(props.class.localeCompare("small"))) {
+  //   size = "100%"
+  // }
+  // else if (!(props.class.localeCompare("large"))) {
+  //   size = "10rem"
+  // }
 
 
   return (
@@ -93,7 +93,7 @@ const SearchAutocomplete = (props) => {
             <TextField
               label={label}
               size= {props.class}
-              style={{ width: size}}
+              style={{ width: '100%'}}
               onChange={e => {
                 e.preventDefault();
                 setSearch(e.target.value);
