@@ -1,12 +1,12 @@
 import React from "react";
 import SearchAutocomplete from "../components/search-autocomplete";
-import MyDatePicker from "../components/DatePicker"
+import {MyDatePicker} from "../components/DatePicker"
 import TripSelector from "../components/TripSelector";
 import { getAmadeusData } from "../api/amadeus.api";
 import '../Styles.css'
 import axios from "axios"
 import { TextField } from "@mui/material";
-import NumTraveller from "../components/NumTraveller";
+import {NumTraveller} from "../components/NumTraveller";
 import Button from '@mui/material/Button';
 
 // Main component 
@@ -73,17 +73,26 @@ const SearchRoot = () => {
         <div class="flex justify-center">
           <TripSelector />
         </div>
-        <div class="flex flex-row justify-center">
-          <div id="search" class="grid gap-2 lg:grid-cols-6 justify-items-center">
-              <div><SearchAutocomplete class= "" search={search} setSearch={setSearch} label="From"/></div>
-              <div><SearchAutocomplete class="" search={search} setSearch={setSearch} label="To"/></div>
-              <div><MyDatePicker label="Departure"/></div>
-              <div><MyDatePicker label="Return"/></div>
-              <div><NumTraveller /></div>
+        <div class="hidden lg:flex lg:flex-row lg:justify-center">
+          <div class="grid gap-2 lg:grid-cols-6 justify-items-center">
+              <div><SearchAutocomplete class= "lg" search={search} setSearch={setSearch} label="From"/></div>
+              <div><SearchAutocomplete class="lg" search={search} setSearch={setSearch} label="To"/></div>
+              <div><MyDatePicker class="lg" label="Departure"/></div>
+              <div><MyDatePicker class="lg" label="Return"/></div>
+              <div><NumTraveller class="lg"/></div>
               <Button color="primary" variant="contained" style={{width: "9rem", fontWeight: "bold", fontSize: "15px"}}>Search</Button>
           </div>
         </div>
-          
+        <div class="lg:hidden sm:flex sm:flex-row sm:justify-center">
+        <div class="grid gap-2 grid-cols-3 sm:justify-items-center">
+              <div><SearchAutocomplete class= "sm" search={search} setSearch={setSearch} label="From"/></div>
+              <div><SearchAutocomplete class= "sm" search={search} setSearch={setSearch} label="To"/></div>
+              <div><MyDatePicker class="sm" label="Departure"/></div>
+              <div><MyDatePicker class="sm" label="Return"/></div>
+              <div><NumTraveller class="sm"/></div>
+              <Button color="primary" variant="contained" style={{width: "6rem", fontWeight: "bold", fontSize: "15px"}}>Search</Button>
+          </div>
+        </div>
       </div>
     </div>
   );

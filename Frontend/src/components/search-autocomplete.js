@@ -49,11 +49,19 @@ const SearchAutocomplete = (props) => {
 
   const label = props.label
 
+  var size = null
+  if (props.class === "sm") {
+    size = "6rem"
+  }
+  else if (props.class === "lg") {
+    size = "11rem"
+  }
+
   return (
     // This is Material-UI component that also has it's own props
     <>
       <Autocomplete
-        style={{ width: "11rem"}}
+        style={{ width: size}}
         open={open}
         onOpen={() => {
           setOpen(true);
