@@ -1,7 +1,7 @@
 import React from "react";
 import SearchAutocomplete from "../components/search-autocomplete";
 import {MyDatePicker} from "../components/DatePicker"
-import TripSelector from "../components/TripSelector";
+import {TripSelector} from "../components/TripSelector";
 import { getAmadeusData } from "../api/amadeus.api";
 import '../Styles.css'
 import axios from "axios"
@@ -72,14 +72,16 @@ const SearchRoot = () => {
   const elementClassName = isSmallScreen ? 'small' : 'large';
   const buttonSize = isSmallScreen ? '2.5rem' : '3.5rem';
 
+  var [tripType, setTripType] = React.useState("Round-Trip");
 
   return (
     <div className="container" class="mt-4">
       <div className="search-panel" class="flex-col">
         <Container maxWidth="xl">
           
-      <div class="flex justify-center"><TripSelector /></div>
-        <Grid container spacing={2} >
+      <div class="flex justify-center"><TripSelector onChange={setTripType} tripType={tripType}/></div>
+        <div style={{display: tripType.localeCompare("Round-Trip") == 0 ? "block": "none"}}>
+        <Grid container justifyContent={"center"} spacing={2} >
             <Grid item xs={6} lg={2}>
             <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="From"/></div>
             </Grid>
@@ -99,8 +101,27 @@ const SearchRoot = () => {
             <div><Button color="primary" variant="contained" style={{width: "100%", fontWeight: "bold", height: buttonSize}}>Search</Button></div>
             </Grid>
          </Grid>
-        </Container>
-          
+        </div>
+        <div style={{display: tripType.localeCompare("One-way") == 0 ? "block": "none"}}>
+        <Grid container spacing={2} >
+            <Grid item xs={6} lg={2}>
+            <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="From"/></div>
+            </Grid>
+            <Grid item xs={6} lg={2}>
+            <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="To"/></div>
+            </Grid>
+            <Grid item xs={12} lg={2}>
+            <div><MyDatePicker class={elementClassName} label="Departure"/></div>
+            </Grid>
+            <Grid item xs={12} lg={2}>
+            <div><NumTraveller class={elementClassName}/></div>
+            </Grid>
+            <Grid item xs={12} lg={2}>
+            <div><Button color="primary" variant="contained" style={{width: "100%", fontWeight: "bold", height: buttonSize}}>Search</Button></div>
+            </Grid>
+         </Grid>
+        </div>
+        </Container> 
       </div>
     </div>
   );
