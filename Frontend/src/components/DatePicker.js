@@ -5,16 +5,16 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export const MyDatePicker = (props) => {
   var size = null
-  if (props.class === "sm") {
-    size = "6rem"
+  if (props.class === "small") {
+    size = "100%"
   }
-  else if (props.class === "lg") {
-    size = "11rem"
+  else if (props.class === "large") {
+    size = "10rem"
   }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker sx={{ width: size}} label = {props.label}/>
+      <DatePicker sx={{ width: size}} label = {props.label} slotProps={{ textField: { size: props.class } }}/>
     </LocalizationProvider>
   );
 }

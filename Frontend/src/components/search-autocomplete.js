@@ -50,18 +50,19 @@ const SearchAutocomplete = (props) => {
   const label = props.label
 
   var size = null
-  if (props.class === "sm") {
-    size = "6rem"
+  if (!(props.class.localeCompare("small"))) {
+    size = "100%"
   }
-  else if (props.class === "lg") {
-    size = "11rem"
+  else if (!(props.class.localeCompare("large"))) {
+    size = "10rem"
   }
+
 
   return (
     // This is Material-UI component that also has it's own props
     <>
       <Autocomplete
-        style={{ width: size}}
+        
         open={open}
         onOpen={() => {
           setOpen(true);
@@ -91,7 +92,8 @@ const SearchAutocomplete = (props) => {
           return (
             <TextField
               label={label}
-              fullWidth
+              size= {props.class}
+              style={{ width: size}}
               onChange={e => {
                 e.preventDefault();
                 setSearch(e.target.value);

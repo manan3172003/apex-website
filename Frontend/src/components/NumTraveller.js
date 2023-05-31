@@ -19,11 +19,11 @@ export const NumTraveller = (props) => {
   const id = open ? 'simple-popover' : undefined;
 
   var size = null
-  if (props.class === "sm") {
-    size = "6rem"
+  if (props.class === "small") {
+    size = "100%"
   }
-  else if (props.class === "lg") {
-    size = "11rem"
+  else if (props.class === "large") {
+    size = "10rem"
   }
 
   return (
@@ -38,6 +38,7 @@ export const NumTraveller = (props) => {
             shrink: true,
           }}
          defaultValue={'1 Adult, Economy'}
+         size={props.class}
         />
       <Popover
         id={id}
