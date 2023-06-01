@@ -9,6 +9,7 @@ import { Grid, Container } from "@mui/material";
 import {NumTraveller} from "../components/NumTraveller";
 import Button from '@mui/material/Button';
 import { useMediaQuery } from '@mui/material';
+import { MultiCitySelection } from "../components/MultiCitySelection";
 
 // Main component 
 const SearchRoot = () => {
@@ -103,20 +104,52 @@ const SearchRoot = () => {
          </Grid>
         </div>
         <div style={{display: tripType.localeCompare("One-way") == 0 ? "block": "none"}}>
-        <Grid container spacing={2} >
-            <Grid item xs={6} lg={2}>
+        <Grid container justifyContent={"center"} spacing={2} >
+            <Grid item xs={4} lg={2}>
             <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="From"/></div>
             </Grid>
-            <Grid item xs={6} lg={2}>
+            <Grid item xs={4} lg={2}>
             <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="To"/></div>
             </Grid>
-            <Grid item xs={12} lg={2}>
+            <Grid item xs={4} lg={2}>
             <div><MyDatePicker class={elementClassName} label="Departure"/></div>
             </Grid>
             <Grid item xs={12} lg={2}>
             <div><NumTraveller class={elementClassName}/></div>
             </Grid>
             <Grid item xs={12} lg={2}>
+            <div><Button color="primary" variant="contained" style={{width: "100%", fontWeight: "bold", height: buttonSize}}>Search</Button></div>
+            </Grid>
+         </Grid>
+        </div>
+        <div style={{display: tripType.localeCompare("Multi-City") == 0 ? "block": "none"}}>
+        <Grid container justifyContent={"center"} spacing={2} >
+          <Grid container item justifyContent={"center"} spacing={2} lg={6}>
+              {/* <MultiCitySelection class={elementClassName} search={search} setSearch={setSearch}/> */}
+              <Grid item xs={4} lg={4}>
+              <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="From"/></div>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+              <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="To"/></div>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+              <div><MyDatePicker class={elementClassName} label="Departure"/></div>
+              </Grid>
+
+              <Grid item xs={4} lg={4}>
+              <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="From"/></div>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+              <div><SearchAutocomplete class={elementClassName} search={search} setSearch={setSearch} label="To"/></div>
+              </Grid>
+              <Grid item xs={4} lg={4}>
+              <div><MyDatePicker class={elementClassName} label="Departure"/></div>
+              </Grid>
+          </Grid>
+            <Grid item justifyContent={"center"} xs={12} lg={2}>
+            <div><NumTraveller class={elementClassName}/></div>
+            </Grid>
+            <Grid item justifyContent={"center"} xs={12} lg={2}>
             <div><Button color="primary" variant="contained" style={{width: "100%", fontWeight: "bold", height: buttonSize}}>Search</Button></div>
             </Grid>
          </Grid>
