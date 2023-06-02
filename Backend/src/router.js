@@ -54,7 +54,9 @@ try{
           const response = await fetch(`https://test.api.amadeus.com/v1/reference-data/locations?subType=${subType}&keyword=${keyword}`, requestOptions1)
           .then(response => response.text())
           .then(async result => {
-            console.log(result);
+            console.log(JSON.parse(result));
+
+
             // Sending response for client
             try {
               await res.json(JSON.parse(result));
@@ -92,8 +94,33 @@ router.get('/api/test', async (req, res) => {
       .then(async result => {
         // Sending response for client
         try {
-          console.log(result);
-          await res.json(JSON.parse(result));
+          // console.log(result);
+          result = JSON.parse(result);
+          var new_result = [];
+          for (var i = 0; i < result.length; i++) {
+            if ("Tags" in result[i]){
+              new_result.push({
+                "Found": "No",
+                "PlaceId": result[i]["AirportInformation"]['PlaceId'],
+                "PlaceName": result[i]["AirportInformation"]["PlaceName"],
+                "CityName": result[i]["CityName"],
+                "AirportRegionId": result[i]["AirportInformation"]["RegionId"],
+                "CityRegionId": result[i]["RegionId"],
+                "CountryName": result[i]["CountryName"],
+                "Distance": result[i]["AirportInformation"]["Distance"],
+              })
+            } else {
+              new_result.push({
+                "Found": "Yes",
+                "PlaceId": result[i]["PlaceId"],
+                "PlaceName": result[i]["PlaceName"],
+                "CityName": result[i]["CityName"],
+                "CountryName": result[i]["CountryName"],
+              })
+            }
+          }
+          console.log(new_result);
+          await res.json(new_result);
         } catch (err) {
           await console.log(err);
         }

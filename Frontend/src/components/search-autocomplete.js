@@ -14,7 +14,7 @@ const SearchAutocomplete = (props) => {
   const [loading, setLoading] = React.useState(false)
 
   // Configure options format for proper displaying on the UI
-  const names = options.map(i => ({ type: "AIRPORT", name: i.PlaceName }));
+  const names = options.map(i => ({ airport: i.PlaceName, name: i.CityName }));
 
   // Debounce func prevents extra unwanted keystrokes, when user triggers input events 
   const debounceLoadData = useCallback(debounce(setKeyword, 1000), []);
@@ -80,11 +80,14 @@ const SearchAutocomplete = (props) => {
             return;
           }
           setSearch("")
-          props.setSearch((p) => ({ ...p, keyword: "a", page: 0 }))
+          props.setSearch((p) => ({ ...p, keyword: "", page: 0 }))
 
         }}
         getOptionLabel={option => {
-          return option.name;
+          return option.airport;
+        }}
+        renderOption={(props, option) => {
+          return <h6 {...props}>{option.airport}</h6>
         }}
         options={names}
         loading={loading}

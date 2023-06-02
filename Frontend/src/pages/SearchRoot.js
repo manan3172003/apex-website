@@ -9,7 +9,6 @@ import { Grid, Container } from "@mui/material";
 import {NumTraveller} from "../components/NumTraveller";
 import Button from '@mui/material/Button';
 import { useMediaQuery } from '@mui/material';
-import { MultiCitySelection } from "../components/MultiCitySelection";
 
 // Main component 
 const SearchRoot = () => {
