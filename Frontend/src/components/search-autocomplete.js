@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import axios from 'axios'
 import { getAmadeusData } from "../api/amadeus.api";
 import { debounce } from "lodash"
+import SeachListItem from "./SearchListItem";
 
 const SearchAutocomplete = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -14,7 +15,15 @@ const SearchAutocomplete = (props) => {
   const [loading, setLoading] = React.useState(false)
 
   // Configure options format for proper displaying on the UI
-  const names = options.map(i => ({ airport: i.PlaceName, name: i.CityName }));
+  const names = options.map(i => {
+    if (i.Found === "Yes"){
+      return ({name: `${i.CityName} (${i.PlaceId})`, PlaceId: i.PlaceId ,airport: i.PlaceName}
+    )} else {
+      return ({name: `${i.PlaceName} (${i.PlaceId})`, PlaceId: i.PlaceId ,airport: i.PlaceName}
+    )
+    }
+    })
+    ;
 
   // Debounce func prevents extra unwanted keystrokes, when user triggers input events 
   const debounceLoadData = useCallback(debounce(setKeyword, 1000), []);
@@ -49,13 +58,6 @@ const SearchAutocomplete = (props) => {
 
   const label = props.label
 
-  // var size = null
-  // if (!(props.class.localeCompare("small"))) {
-  //   size = "100%"
-  // }
-  // else if (!(props.class.localeCompare("large"))) {
-  //   size = "10rem"
-  // }
 
 
   return (
@@ -70,8 +72,8 @@ const SearchAutocomplete = (props) => {
         onClose={() => {
           setOpen(false);
         }}
-        getOptionSelected={(option, value) =>
-          option.name === value.name && option.type === value.type
+        isOptionEqualToValue={(option, value) =>
+          option.key === value.key
         }
         onChange={(e, value) => {
           if (value && value.name) {
@@ -83,11 +85,10 @@ const SearchAutocomplete = (props) => {
           props.setSearch((p) => ({ ...p, keyword: "", page: 0 }))
 
         }}
-        getOptionLabel={option => {
-          return option.airport;
-        }}
+        getOptionLabel={option => option.label}
         renderOption={(props, option) => {
-          return <h6 {...props}>{option.airport}</h6>
+          // return <h6 {...props}>{option.PlaceName}</h6>
+          return (<SeachListItem key={option.PlaceId} passbyprops={props} option={option} />)
         }}
         options={names}
         loading={loading}
