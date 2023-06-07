@@ -73,7 +73,7 @@ const SearchAutocomplete = (props) => {
           setOpen(false);
         }}
         isOptionEqualToValue={(option, value) =>
-          option.key === value.key
+          option.PlaceId === value.PlaceId
         }
         onChange={(e, value) => {
           if (value && value.name) {
@@ -85,7 +85,7 @@ const SearchAutocomplete = (props) => {
           props.setSearch((p) => ({ ...p, keyword: "", page: 0 }))
 
         }}
-        getOptionLabel={option => option.label}
+        getOptionLabel={option => option.name}
         renderOption={(props, option) => {
           // return <h6 {...props}>{option.PlaceName}</h6>
           return (<SeachListItem key={option.PlaceId} passbyprops={props} option={option} />)
