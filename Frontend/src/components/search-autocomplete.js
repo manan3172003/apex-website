@@ -11,35 +11,33 @@ const SearchAutocomplete = (props) => {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [search, setSearch] = React.useState('')
-  const [keyword, setKeyword] = React.useState('')
   const [loading, setLoading] = React.useState(false)
-
-  // Configure options format for proper displaying on the UI
-  const names = options.map(i => {
-    if (i.Found === "Yes"){
-      return ({name: `${i.CityName} (${i.PlaceId})`, PlaceId: i.PlaceId ,airport: i.PlaceName}
-    )} else {
-      return ({name: `${i.PlaceName} (${i.PlaceId})`, PlaceId: i.PlaceId ,airport: i.PlaceName}
-    )
-    }
-    })
-    ;
-
-  // Debounce func prevents extra unwanted keystrokes, when user triggers input events 
-  const debounceLoadData = useCallback(debounce(setKeyword, 1000), []);
-
-  useEffect(() => {
-    debounceLoadData(search);
-  }, [search]);
+  const [names, setNames] = React.useState([])
 
   // Same example as in *SearchRoot* component
   React.useEffect(() => {
 
     setLoading(true)
-    const { out, source } = getAmadeusData({ ...props.search, page: 0, keyword });
+    const { out, source } = getAmadeusData({keyword: search});
 
     out.then(res => {
       setOptions(res.data);
+      // Configure options format for proper displaying on the UI
+      setNames(res.data.map(i => {
+      if (i.Found === "Yes"){
+        if (i.PlaceId.at(-1) === "A") {
+          return ({name: `${i.CityName} Any`, PlaceId: i.PlaceId ,airport: i.PlaceName})
+        } else {
+          return ({name: `${i.CityName} (${i.PlaceId})`, PlaceId: i.PlaceId ,airport: i.PlaceName})
+        }
+
+      } else {
+        return ({name: `${i.PlaceName} (${i.PlaceId})`, PlaceId: i.PlaceId ,airport: i.PlaceName}
+      )
+      }
+      }));
+
+      console.log(names);
       setLoading(false)
     }).catch(err => {
       axios.isCancel(err);
@@ -51,21 +49,16 @@ const SearchAutocomplete = (props) => {
     return () => {
       source.cancel()
     };
-  }, [keyword]);
-
-  // Desctructuring our props
-  const { city, airport } = props.search
+  }, [search]);
 
   const label = props.label
-
-
 
   return (
     // This is Material-UI component that also has it's own props
     <>
       <Autocomplete
-        
         open={open}
+        filterOptions={(options, state) => options}
         onOpen={() => {
           setOpen(true);
         }}
@@ -75,16 +68,15 @@ const SearchAutocomplete = (props) => {
         isOptionEqualToValue={(option, value) =>
           option.PlaceId === value.PlaceId
         }
-        onChange={(e, value) => {
-          if (value && value.name) {
-            props.setSearch((p) => ({ ...p, keyword: value.name, page: 0 }))
-            setSearch(value.name)
-            return;
-          }
-          setSearch("")
-          props.setSearch((p) => ({ ...p, keyword: "", page: 0 }))
+        // onInputChange={(e, value) => {
+        //   if (value) {
+        //     // console.log(props.search)
+        //     // console.log(keyword)
+        //     console.log(value)
+        //     setSearch(value)
+        //   }
 
-        }}
+        // }}
         getOptionLabel={option => option.name}
         renderOption={(props, option) => {
           // return <h6 {...props}>{option.PlaceName}</h6>
@@ -99,13 +91,13 @@ const SearchAutocomplete = (props) => {
               size= {props.class}
               style={{ width: '100%'}}
               onChange={e => {
+                console.log(e.target.value)
                 e.preventDefault();
                 setSearch(e.target.value);
               }}
               variant="outlined"
               inputProps={{
                 ...params.inputProps,
-                value: search
               }}
               InputProps={{
                 ...params.InputProps,

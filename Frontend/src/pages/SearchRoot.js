@@ -26,8 +26,6 @@ const SearchRoot = () => {
     page: 0
   });
 
-  const [dataSource, setDataSource] = React.useState([]);
-
   const [loading, setLoading] = React.useState(false)
 
   /* 
@@ -40,33 +38,6 @@ const SearchRoot = () => {
 
     3. We can create as many *useEffect* funcs, as we need
   */
-  React.useEffect(() => {
-    // Turn on loader animation
-    setLoading(true)
-
-
-    /* Getting data from amadeus api.
-       out - our data that coming from backend.
-       source - token for cancelation request.
-    */
-
-    const { out, source } = getAmadeusData(search);
-
-    out.then(res => {
-      // If we send too many request to the api per second - we will get an error and app will break
-      // Therefore we implemented simple check to prevent error on client side.
-      setDataSource(res); // dispatching data to components state
-      setLoading(false)
-    }).catch(err => {
-      axios.isCancel(err);
-      setLoading(false)
-    });
-
-    // If we returning function from *useEffect* - then this func will execute, when component will unmount
-    return () => {
-      source.cancel()
-    };
-  }, [search]);
 
   const isSmallScreen = useMediaQuery('(max-width:1200px)');
   const elementClassName = isSmallScreen ? 'small' : 'large';
