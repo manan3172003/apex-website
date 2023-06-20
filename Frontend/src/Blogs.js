@@ -1,5 +1,5 @@
 import './Styles.css';
-import { createTheme, colors, ThemeProvider, Typography } from '@mui/material';
+import { createTheme, ThemeProvider, Typography } from '@mui/material';
 import {NavBar2} from './components/NavBar2';
 
 const theme = createTheme({
@@ -18,10 +18,10 @@ const theme = createTheme({
   }
 });
 
-function Hotels() {
+function Blogs() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="Hotels">
+      <div className="Blogs">
         <div class="flex flex-col h-screen content-center">
         <header class="content-start">
           <NavBar2 />
@@ -46,4 +46,4 @@ function Hotels() {
   );
 }
 
-export default Hotels;
+export default Blogs;

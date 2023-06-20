@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import Blog from './Blogs.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +16,7 @@ root.render(
       <Routes>
               <Route path="/" element={<App />} />
               <Route path="/hotels" element={<Hotels />} />
-              {/* <Route path="/blog" element={<Blog />} /> */}
+              <Route path="/blog" element={<Blog />} />
       </Routes>
       
     </BrowserRouter>
