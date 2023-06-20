@@ -2,9 +2,7 @@ import React from "react";
 import SearchAutocomplete from "../components/search-autocomplete";
 import {MyDatePicker} from "../components/DatePicker"
 import {TripSelector} from "../components/TripSelector";
-import { getAmadeusData } from "../api/amadeus.api";
 import '../Styles.css'
-import axios from "axios"
 import { Grid, Container } from "@mui/material";
 import {NumTraveller} from "../components/NumTraveller";
 import Button from '@mui/material/Button';
@@ -25,8 +23,6 @@ const SearchRoot = () => {
     airport: true,
     page: 0
   });
-
-  const [loading, setLoading] = React.useState(false)
 
   /* 
     Also React has lifecycle methods. On of them is *useEffect* - the same as ComponentDidMount | ComponentDidUpdate | ComponentWillUnmount in class components 

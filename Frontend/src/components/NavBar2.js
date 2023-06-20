@@ -1,36 +1,26 @@
-import { AppBar, Toolbar, IconButton, Typography, Stack, Button, SvgIcon, Icon } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Typography, Button} from "@mui/material";
 import { Box } from "@mui/system";
 import { Container } from "@mui/material";
 import { Menu } from "@mui/material";
 import { MenuItem } from "@mui/material";
-import { Avatar } from "@mui/material";
-import { Tooltip } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
-import { Adb as AdbIcon } from "@mui/icons-material";
 import React from "react";
 import logo from '../assets/logo1.png';
-
+import { Link } from "react-router-dom";
 
 const pages = ['Flights', 'Hotels', 'Blog'];
 
 export const NavBar2 = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   return (
     <AppBar position="static">
@@ -93,11 +83,21 @@ export const NavBar2 = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {pages.map((page) => {
+              if (page == "Flights") {
+                return (
+                  <MenuItem component={Link} to="/" key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                )
+              } else {
+                return (
+                  <MenuItem component={Link} to={`/${page}`} key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                )
+              }
+            })}
             </Menu>
           </Box>
           <IconButton sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} >
@@ -131,15 +131,35 @@ export const NavBar2 = () => {
             ApexTravels
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            {pages.map((page) => 
+            {
+              if (page == "Flights") {
+                return (
+                  <Button
+                  component={Link}
+                  to={`/`}
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+                )
+              } else {
+                return (
+                  <Button
+                  component={Link}
+                  to={`/${page}`}
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+                )
+              }
+            }
+            )}
           </Box>
         </Toolbar>
       </Container>

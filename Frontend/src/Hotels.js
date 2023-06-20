@@ -1,9 +1,6 @@
-import './App.css';
 import './Styles.css';
 import { createTheme, ThemeProvider, Typography } from '@mui/material';
 import {NavBar2} from './components/NavBar2';
-import SearchRoot from './pages/SearchRoot';
-
 
 const theme = createTheme({
   palette: {
@@ -21,16 +18,16 @@ const theme = createTheme({
   }
 });
 
-function App() {
+function Hotels() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className="Hotels">
         <div class="flex flex-col h-screen content-center">
         <header class="content-start">
           <NavBar2 />
         </header>
         <main>
-          <SearchRoot />
+        <Typography variant="body2" color="text.secondary" align="center">Coming Soon</Typography>
         </main>
         <footer id="footer">
           <Typography variant="body2" color="text.secondary" align="center">
@@ -47,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default Hotels;
